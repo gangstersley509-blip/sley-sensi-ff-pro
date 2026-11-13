@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLEY-SENSI-FF-PRO</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #090d16;
+  color: white;
+}
+header {
+  background: #151d2c;
+  padding: 25px 15px;
+  text-align: center;
+  border-bottom: 2px solid gold;
+}
+h1 {
+  color: gold;
+  font-size: 27px;
+}
+header p {
+  color: #ddd;
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+.card {
+  background: #172235;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #34445d;
+}
+h2 {
+  color: gold;
+}
+label {
+  display: block;
+  margin: 15px 0 8px;
+}
+select, button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 9px;
+  border: none;
+  font-size: 16px;
+}
+select {
+  background: #26364e;
+  color: white;
+}
+button {
+  background: gold;
+  color: #111;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.result {
+  display: none;
+  background: #0c1422;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+.value {
+  color: #35ef9a;
+  font-size: 20px;
+  font-weight: bold;
+}
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🔥 SLEY-SENSI-FF-PRO 🔥</h1>
+<p>YOUR AIM • YOUR POWER 👑</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>📱 Chwazi aparèy ou</h2>
+
+<label>Mak telefòn oswa tablèt</label>
+<select id="brand" onchange="loadModels()">
+<option value="">Chwazi mak la</option>
+<option>Samsung</option>
+<option>Tecno</option>
+<option>Infinix</option>
+<option>Motorola</option>
+<option>Xiaomi</option>
+<option>Itel</option>
+<option>Sky Devices</option>
+<option>Apple</option>
+</select>
+
+<label>Modèl aparèy la</label>
+<select id="model">
+<option value="">Chwazi modèl la</option>
+</select>
+
+<label>Kalite jwèt</label>
+<select id="mode">
+<option>BR</option>
+<option>CS</option>
+<option>BR ak CS</option>
+</select>
+
+<button onclick="showSensi()">🎯 JWENN SENSIBILITÉ</button>
+
+<div class="result" id="result">
+<h2>🔥 MEN SENSIBILITÉ OU</h2>
+<p>Général: <span class="value" id="g"></span></p>
+<p>Red Dot: <span class="value" id="r"></span></p>
+<p>2X Scope: <span class="value" id="x2"></span></p>
+<p>4X Scope: <span class="value" id="x4"></span></p>
+<p>Sniper: <span class="value" id="sn"></span></p>
+<p>Free Look: <span class="value" id="fl"></span></p>
+
+<button onclick="copySensi()">📋 KOPYE SENSIBILITÉ</button>
+<p id="message"></p>
+</div>
+</div>
+
+<div class="card">
+<h2>🎮 Enfòmasyon</h2>
+<p>Chwazi mak ak modèl aparèy ou pou jwenn yon baz sensibilité pou Free Fire.</p>
+<p>Paramèt yo se rekòmandasyon pou teste. Ou ka ajiste yo selon jan ou jwe.</p>
+</div>
+
+</div>
+
+<footer>
+🔥 SLEY-SENSI-FF-PRO 🔥
+<p>Created by SLEY 👑</p>
+</footer>
+
+<script>
+const devices = {
+"Samsung": [
+"Galaxy A05", "Galaxy A05s", "Galaxy A04",
+"Galaxy A15", "Galaxy A25", "Galaxy A35",
+"Galaxy A55", "Galaxy S23", "Galaxy S24",
+"Galaxy Note20 5G"
+],
+"Tecno": [
+"Spark 10", "Spark 20", "Spark 20 Pro",
+"Spark 30", "Camon 20", "Camon 30",
+"Pova 5", "Pova 6"
+],
+"Infinix": [
+"Hot 30", "Hot 40", "Hot 50",
+"Note 30", "Note 40", "GT 10 Pro",
+"GT 20 Pro"
+],
+"Motorola": [
+"Moto G Play XT2093DL", "Moto G Power",
+"Moto G Stylus", "Moto G54", "Moto G84",
+"Edge 40"
+],
+"Xiaomi": [
+"Redmi 12", "Redmi 13C", "Redmi Note 12",
+"Redmi Note 13", "Poco X5", "Poco X6"
+],
+"Itel": [
+"A60", "A70", "S23", "S24",
+"P40", "P55"
+],
+"Sky Devices": [
+"SKY PAD10 Max", "Sky Elite",
+"Sky Platinum", "Sky Plus"
+],
+"Apple": [
+"iPhone 11", "iPhone 12", "iPhone 13",
+"iPhone 14", "iPhone 15", "iPhone 16"
+]
+};
+
+function loadModels() {
+  let brand = document.getElementById("brand").value;
+  let model = document.getElementById("model");
+
+  model.innerHTML = '<option value="">Chwazi modèl la</option>';
+
+  if (devices[brand]) {
+    devices[brand].forEach(item => {
+      let option = document.createElement("option");
+      option.textContent = item;
+      option.value = item;
+      model.appendChild(option);
+    });
+  }
+}
+
+function showSensi() {
+  let brand = document.getElementById("brand").value;
+  let model = document.getElementById("model").value;
+
+  if (!brand || !model) {
+    alert("Tanpri chwazi mak ak modèl aparèy ou!");
+    return;
+  }
+
+  document.getElementById("g").textContent = 190;
+  document.getElementById("r").textContent = 185;
+  document.getElementById("x2").textContent = 180;
+  document.getElementById("x4").textContent = 175;
+  document.getElementById("sn").textContent = 100;
+  document.getElementById("fl").textContent = 150;
+
+  document.getElementById("result").style.display = "block";
+  document.getElementById("message").textContent =
+    brand + " " + model + " - Paramèt pou teste";
+}
+
+function copySensi() {
+  let text =
+    "SLEY-SENSI-FF-PRO\n" +
+    "Général: " + document.getElementById("g").textContent + "\n" +
+    "Red Dot: " + document.getElementById("r").textContent + "\n" +
+    "2X Scope: " + document.getElementById("x2").textContent + "\n" +
+    "4X Scope: " + document.getElementById("x4").textContent + "\n" +
+    "Sniper: " + document.getElementById("sn").textContent + "\n" +
+    "Free Look: " + document.getElementById("fl").textContent;
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      document.getElementById("message").textContent =
+        "Sensibilité kopye!";
+    });
+  } else {
+    document.getElementById("message").textContent =
+      "Tanpri kopye paramèt yo manyèlman.";
+  }
+}
+</script>
+
+</body>
+</html>
